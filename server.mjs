@@ -1,14 +1,11 @@
-// Importing modules: express for routing, mongoose for database, 
+// Importing modules: express for routing,
 // cors for managing cross-origin requests, morgan for logging http requests
-// dotenv for environmental variables
 import express from 'express'
-import mongoose from 'mongoose'
 import cors from 'cors'
 import morgan from 'morgan'
-import dotenv from 'dotenv'
 
-// Load environmental variables
-dotenv.config();
+
+
 
 // Create express app
 const app = express();
