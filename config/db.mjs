@@ -6,16 +6,16 @@ import dotenv from 'dotenv'; // dotenv for environmental variables
 dotenv.config();
 
 // Load mongoUri
-const mongoURI = process.env.mongoURI 
-if (!mongoURI) {
-    throw new Error('mongoURI is not defined');
+const MONGO_URI = process.env.MONGO_URI 
+if (!MONGO_URI) {
+    throw new Error('MONGO_URI is not defined');
 }    
 
 // Connecting to database function
 const connectDB = async () => {
     try {
         // Try to connect to database if successful log success
-        await mongoose.connect(mongoURI);
+        await mongoose.connect(MONGO_URI);
         console.log("Database connected")
     } catch (error) {
         // If database connection not successful, log error and exit 
