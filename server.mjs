@@ -1,17 +1,21 @@
-// Importing modules: express for routing,
-// cors for managing cross-origin requests, morgan for logging http requests
-import express from 'express'
-import cors from 'cors'
-import morgan from 'morgan'
+// Importing necessary modules
+import express from 'express' // express for routing
+import cors from 'cors' // cors for managing cross-origin requests
+import morgan from 'morgan' // morgan for logging http requests
+import connectDB from './config/db.mjs'; // connectDB function to connect to database
+import dotenv from 'dotenv'; // dotenv for environmental variables
 
-
-
+// Load environmental variables
+dotenv.config();
 
 // Create express app
 const app = express();
 
 // Set PORT and default to 3000 if first port not available
 const PORT = process.env.PORT || 3000;
+
+// Connect to database
+connectDB();
 
 
 

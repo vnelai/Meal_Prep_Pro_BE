@@ -1,6 +1,6 @@
-// Importing modules: mongoose for database interactions and dotenv for environmental variables
-import mongoose from "mongoose";
-import dotenv from 'dotenv';
+// Importing modules: 
+import mongoose from "mongoose"; //mongoose for database interactions
+import dotenv from 'dotenv'; // dotenv for environmental variables
 
 // Load environmental variables
 dotenv.config();
