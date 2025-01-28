@@ -19,10 +19,15 @@ const PORT = process.env.PORT || 3000;
 connectDB();
 
 // Middleware
+app.use(express.json());  // Parse JSON requests
+
  // Connect route handler favoritesRoutes to base path /api/favorites
 app.use('/api/favorites', favoritesRoutes);
 
-
+app.get('/test', (req, res) => {
+  console.log("Test route hit!");
+  res.send("Test route works!");
+});
 
 // Listener
 app.listen(PORT, () => {

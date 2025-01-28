@@ -36,7 +36,7 @@ const favoriteRecipesSchema = new mongoose.Schema({
 });
 
 // Set favorite recipes model in variable
-const FavoriteRecipes = mongoose.model('FavoriteRecipes', favoriteRecipesSchema);
+const FavoriteRecipes = mongoose.model('favorite_recipes', favoriteRecipesSchema);
 
 // Export FavoriteRecipes model
 export default FavoriteRecipes;

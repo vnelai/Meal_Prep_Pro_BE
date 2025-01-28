@@ -8,7 +8,8 @@ router
     .get(async (req,res) => {
         try {
             const favoriteRecipes = await FavoriteRecipes.find(); // Get all favorite recipes
-            if (!favoriteRecipes) {
+            console.log(favoriteRecipes); // Log the recipes to verify data
+            if (!favoriteRecipes || favoriteRecipes.length === 0) {
                 return res.status(404).json({message: 'No favorite recipe found'});
             }
             res.status(200).json(favoriteRecipes); // Convert response to json format
