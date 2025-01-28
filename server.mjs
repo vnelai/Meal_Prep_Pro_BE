@@ -4,6 +4,7 @@ import cors from 'cors' // cors for managing cross-origin requests
 import morgan from 'morgan' // morgan for logging http requests
 import connectDB from './config/db.mjs'; // connectDB function to connect to database
 import dotenv from 'dotenv'; // dotenv for environmental variables
+import favoritesRoutes from './routes/favorites.mjs'; // Import favorites route
 
 // Load environmental variables
 dotenv.config();
@@ -17,7 +18,9 @@ const PORT = process.env.PORT || 3000;
 // Connect to database
 connectDB();
 
-
+// Middleware
+ // Connect route handler favoritesRoutes to base path /api/favorites
+app.use('/api/favorites', favoritesRoutes);
 
 
 

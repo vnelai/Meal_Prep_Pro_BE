@@ -8,9 +8,10 @@ router
     .get(async (req,res) => {
         try {
             const favoriteRecipes = await FavoriteRecipes.find(); // Get all favorite recipes
-            res.json(favoriteRecipes); // Convert response to json format
+            res.status(200).res.json(favoriteRecipes); // Convert response to json format
         } catch (error) {
             console.error('Error fetching favorite recipes:', error); // Log error
+            res.status(500).json({ message: 'Server error', error }); // Send error response
         }        
     })
 
