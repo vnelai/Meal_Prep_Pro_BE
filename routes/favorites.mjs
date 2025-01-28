@@ -16,7 +16,20 @@ router.get('/', async (req,res) => {
         }        
     });
 
-router.put('/:id', async (req,res) => {
+router
+.route('/:id')
+.get(async (req, res) => {
+    try {
+        const favoriteRecipe = await FavoriteRecipes.findById(req.params.id); // Get the recipe by ID
+        if (!favoriteRecipe) {
+            return res.status(404).json({ message: 'Favorite recipe not found' });
+        }
+        res.status(200).json(favoriteRecipe); // Return the recipe in json format
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error }); // Send error response
+    }
+})
+.put(async (req, res) => {
     try {
         const updateFavorite = await FavoriteRecipes.findByIdAndUpdate(
             req.params.id, // The ID of the recipe we wish to update
