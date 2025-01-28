@@ -45,13 +45,30 @@ router
         return res.status(404).json({message: 'Favorite recipe not found'});
         }
 
-        // If favorite recipe found and updated successfully convert result to json format
+        // If favorite recipe found and updated successfully return result to json format
         res.status(200).json(updateFavorite);
     } catch (error) {
         // If try block doesn't work send error response
         res.status(500).json({message:'Server error', error});
     }
-});
+})
+.delete(async (req, res) => {
+    try {
+        // Find and delete by id
+        const deleteFavorite = await FavoriteRecipes.findByIdAndDelete(req.params.id);
+
+        // If favorite recipe not found throw an error
+        if (!deleteFavorite) {
+        return res.status(404).json({message: 'Favorite recipe not found'});
+        }
+
+        // If favorite recipe found and deleted successfully return result in json format
+        res.status(200).json(deleteFavorite);
+    } catch (error) {
+        // If try block doesn't work send error response
+        res.status(500).json({message:'Server error', error});
+    }
+})
 
 
 
