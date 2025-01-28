@@ -3,9 +3,7 @@ import express from 'express'; // express for routing
 import FavoriteRecipes from '../models/FavoriteRecipes.mjs'; // import FavoriteRecipes model
 const router = express.Router(); // create router
 
-router
-    .route('/') // ("/api/favorites") endpoint
-    .get(async (req,res) => {
+router.get('/', async (req,res) => {
         try {
             const favoriteRecipes = await FavoriteRecipes.find(); // Get all favorite recipes
             console.log(favoriteRecipes); // Log the recipes to verify data
@@ -14,10 +12,33 @@ router
             }
             res.status(200).json(favoriteRecipes); // Convert response to json format
         } catch (error) {
-            console.error('Error fetching favorite recipes:', error); // Log error
             res.status(500).json({ message: 'Server error', error }); // Send error response
         }        
-    })
+    });
+
+router.put('/:id', async (req,res) => {
+    try {
+        const updateFavorite = await FavoriteRecipes.findByIdAndUpdate(
+            req.params.id, // The ID of the recipe we wish to update
+            req.body, // The data we want to update the recipe with
+            { 
+                new: true, // Return the updated recipe and not the original
+                runValidators: true // Ensure the new data matches the schema
+            }
+        );
+
+        // If favorite recipe not found throw an error
+        if (!updateFavorite) {
+        return res.status(404).json({message: 'Favorite recipe not found'});
+        }
+
+        // If favorite recipe found and updated successfully convert result to json format
+        res.status(200).json(updateFavorite);
+    } catch (error) {
+        // If try block doesn't work send error response
+        res.status(500).json({message:'Server error', error});
+    }
+});
 
 
 
