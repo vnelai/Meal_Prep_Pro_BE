@@ -44,6 +44,34 @@ router
     }
   });
 
+  router
+  .route("/:id")
+  // Update by id a shopping list item 
+  .put(async (req, res) => {
+    try {
+      const updateShoppingListItem = await ShoppingList.findByIdAndUpdate(
+        req.params.id, // The ID of the grocery item we wish to update
+        req.body, // The data we want to update the grocery item with
+        {
+          new: true, // Return the updated grocery item and not the original
+          runValidators: true, // Ensure the new data matches the schema
+        }
+      );
+
+      // If grocery item not found throw an error
+      if (!updateShoppingListItem) {
+        return res.status(404).json({ message: "Shopping list item not found" });
+      }
+
+      // If shopping item found and updated successfully return result to json format
+      res.status(200).json(updateShoppingListItem);
+    } catch (error) {
+      // If try block doesn't work send error response
+      res.status(500).json({ message: "Server error", error });
+    }
+  })
+  
+
 
 
 export default router;
