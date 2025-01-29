@@ -70,8 +70,26 @@ router
       res.status(500).json({ message: "Server error", error });
     }
   })
+  // Delete by id a grocery item from shopping list
+  .delete(async (req, res) => {
+    try {
+      // Find and delete by id
+      const deleteShoppingListItem = await ShoppingList.findByIdAndDelete(
+        req.params.id
+      );
+
+      // If item not found throw an error
+      if (!deleteShoppingListItem) {
+        return res.status(404).json({ message: "Shopping list item not found" });
+      }
+
+      // If item found and deleted successfully return result in json format
+      res.status(200).json(deleteShoppingListItem);
+    } catch (error) {
+      // If try block doesn't work send error response
+      res.status(500).json({ message: "Server error", error });
+    }
+  });
+
   
-
-
-
 export default router;
