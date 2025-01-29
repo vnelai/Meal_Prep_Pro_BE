@@ -1,5 +1,5 @@
 // Import modules
-import FavoriteRecipes from "../models/favoriteRecipesModel"; // Import FavoriteRecipes model
+import FavoriteRecipes from "../models/FavoriteRecipes.mjs"; // Import FavoriteRecipes model
 
 // Function to save a recipe to favorites
 const saveRecipeToFavorites = async (req, res) => {
@@ -17,6 +17,7 @@ const saveRecipeToFavorites = async (req, res) => {
         ingredients: extendedIngredients.map(ingredient => ({
             name: ingredient.name,
             quantity: ingredient.amount, // Renamed 'amount' to 'quantity'
+            unit: ingredient.unit,
         })),
       });
   

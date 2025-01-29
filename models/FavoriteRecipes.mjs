@@ -27,6 +27,10 @@ const favoriteRecipesSchema = new mongoose.Schema({
                 type: String,
                 required: false, // optional
             },
+            unit: {
+                type: String,
+                required: false, // optional
+            },
         },
     ],
     instructions: {
