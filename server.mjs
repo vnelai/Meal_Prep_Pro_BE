@@ -6,7 +6,7 @@ import connectDB from './config/db.mjs'; // connectDB function to connect to dat
 import dotenv from 'dotenv'; // dotenv for environmental variables
 import favoritesRoutes from './routes/favorites.mjs'; // Import favorites routes
 import mealPlanner from './routes/meal-planner.mjs'; // Import meal-planner routes
-import ShoppingList from './models/ShoppingList.mjs'; // Import shopping-list routes
+import ShoppingList from './routes/shopping-list.mjs'; // Import shopping-list routes
 
 // Load environmental variables
 dotenv.config();

@@ -59,7 +59,7 @@ router
 
       // If meal plan recipe not found throw an error
       if (!updateMealPlan) {
-        return res.status(404).json({ message: "Favorite recipe not found" });
+        return res.status(404).json({ message: "Meal plan recipe not found" });
       }
 
       // If favorite recipe found and updated successfully return result to json format
@@ -79,7 +79,7 @@ router
 
       // If recipe not found throw an error
       if (!deleteMealPlan) {
-        return res.status(404).json({ message: "Favorite recipe not found" });
+        return res.status(404).json({ message: "Meal plan recipe not found" });
       }
 
       // If recipe found and deleted successfully return result in json format
