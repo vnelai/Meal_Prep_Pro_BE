@@ -7,6 +7,8 @@ import dotenv from 'dotenv'; // dotenv for environmental variables
 import favoritesRoutes from './routes/favorites.mjs'; // Import favorites routes
 import mealPlanner from './routes/meal-planner.mjs'; // Import meal-planner routes
 import ShoppingList from './routes/shopping-list.mjs'; // Import shopping-list routes
+import Recipes from './routes/recipes.mjs'; // Import recipes routes
+
 
 // Load environmental variables
 dotenv.config();
@@ -32,6 +34,8 @@ app.use('/api/meal-planner', mealPlanner);
 // Connect route handler ShoppingList to base path /api/shopping-list
 app.use('/api/shopping-list', ShoppingList);
 
+// Connect route handler Recipes to base path /api/recipes
+app.use('/api/recipes', Recipes);
 
 
 // Listener
