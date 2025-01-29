@@ -35,7 +35,7 @@ router
       // The save method saves the newMealPlan into database
       const savedMealPlanRecipe = await newMealPlan.save();
 
-      // The savedFavorite is then returned in json format
+      // The saved item is then returned in json format
       res.status(201).json(savedMealPlanRecipe);
     } catch (error) {
       // If any errors occur send the error message
