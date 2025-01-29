@@ -27,7 +27,7 @@ app.use('/api/favorites', favoritesRoutes);
 
  // Connect route handler mealPlanner to base path /api/meal-planner
  app.use('/api/meal-planner', mealPlanner);
- 
+
 
 // Listener
 app.listen(PORT, () => {
