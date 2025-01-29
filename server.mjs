@@ -4,8 +4,9 @@ import cors from 'cors' // cors for managing cross-origin requests
 import morgan from 'morgan' // morgan for logging http requests
 import connectDB from './config/db.mjs'; // connectDB function to connect to database
 import dotenv from 'dotenv'; // dotenv for environmental variables
-import favoritesRoutes from './routes/favorites.mjs'; // Import favorites route
-import mealPlanner from './routes/meal-planner.mjs'; // Import meal-planner route
+import favoritesRoutes from './routes/favorites.mjs'; // Import favorites routes
+import mealPlanner from './routes/meal-planner.mjs'; // Import meal-planner routes
+import ShoppingList from './models/ShoppingList.mjs'; //Import shopping-list routes
 
 // Load environmental variables
 dotenv.config();
@@ -22,11 +23,14 @@ connectDB();
 // Middleware
 app.use(express.json());  // Parse JSON requests
 
- // Connect route handler favoritesRoutes to base path /api/favorites
+// Connect route handler favoritesRoutes to base path /api/favorites
 app.use('/api/favorites', favoritesRoutes);
 
- // Connect route handler mealPlanner to base path /api/meal-planner
- app.use('/api/meal-planner', mealPlanner);
+// Connect route handler mealPlanner to base path /api/meal-planner
+app.use('/api/meal-planner', mealPlanner);
+
+// Connect route handler ShoppingList to base path /api/shopping-list
+app.use('/api/shopping-list', ShoppingList);
 
 
 // Listener
