@@ -69,6 +69,25 @@ router
       res.status(500).json({ message: "Server error", error });
     }
   })
-  
+  // Delete by id a recipe in meal-planner 
+  .delete(async (req, res) => {
+    try {
+      // Find and delete by id
+      const deleteMealPlan = await MealPlanner.findByIdAndDelete(
+        req.params.id
+      );
+
+      // If recipe not found throw an error
+      if (!deleteMealPlan) {
+        return res.status(404).json({ message: "Favorite recipe not found" });
+      }
+
+      // If recipe found and deleted successfully return result in json format
+      res.status(200).json(deleteMealPlan);
+    } catch (error) {
+      // If try block doesn't work send error response
+      res.status(500).json({ message: "Server error", error });
+    }
+  });
 
   export default router;
