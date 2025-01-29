@@ -12,10 +12,13 @@ const saveRecipeToFavorites = async (req, res) => {
         recipeId,  
         recipeName: title,  // Renaming the 'title' key from the request body from external API to 'recipeName', to match the FavoriteRecipes schema. 
         recipeImg: image,  // Renaming the 'image' key from the request body from external API to 'recipeImg', to match the FavoriteRecipes schema. 
-        instructions, 
-        ingredients: extendedIngredients,  // Renaming the 'extendedIngredients' key from the request body from external API to 'ingredients', to match the FavoriteRecipes schema. 
+        instructions,
+         // Renaming the 'extendedIngredients' key from the request body from external API to 'ingredients', to match the FavoriteRecipes schema.  
+        ingredients: extendedIngredients.map(ingredient => ({
+            name: ingredient.name,
+            quantity: ingredient.amount, // Renamed 'amount' to 'quantity'
+        })),
       });
-
   
       // Save the recipe to the database
       const savedRecipe = await favoriteRecipe.save();
