@@ -5,6 +5,7 @@ import morgan from 'morgan' // morgan for logging http requests
 import connectDB from './config/db.mjs'; // connectDB function to connect to database
 import dotenv from 'dotenv'; // dotenv for environmental variables
 import favoritesRoutes from './routes/favorites.mjs'; // Import favorites route
+import mealPlanner from './routes/meal-planner.mjs'; // Import meal-planner route
 
 // Load environmental variables
 dotenv.config();
@@ -24,6 +25,9 @@ app.use(express.json());  // Parse JSON requests
  // Connect route handler favoritesRoutes to base path /api/favorites
 app.use('/api/favorites', favoritesRoutes);
 
+ // Connect route handler mealPlanner to base path /api/meal-planner
+ app.use('/api/meal-planner', mealPlanner);
+ 
 
 // Listener
 app.listen(PORT, () => {
