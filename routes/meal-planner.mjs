@@ -5,7 +5,7 @@ const router = express.Router(); // create router
 
 router
   .route("/")
-  // View all recipe in meal-planner
+  // View all recipes in meal-planner
   .get(async (req, res) => {
     try {
       const MealPLannerRecipes = await MealPlanner.find(); // Get all meal planner recipes

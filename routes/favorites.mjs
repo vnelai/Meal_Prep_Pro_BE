@@ -5,6 +5,7 @@ const router = express.Router(); // create router
 
 router
   .route("/")
+  // View all recipes in favorites
   .get(async (req, res) => {
     try {
       const favoriteRecipes = await FavoriteRecipes.find(); // Get all favorite recipes
@@ -17,6 +18,7 @@ router
       res.status(500).json({ message: "Server error", error }); // Send error response
     }
   })
+  // Create a new recipe into favorites
   .post(async (req, res) => {
     try {
       // Use destructuring to automatically extract all the properties from req.body and assign them to variables in a single line
@@ -45,6 +47,7 @@ router
 
 router
   .route("/:id")
+  // Get by id a recipe in favorites
   .get(async (req, res) => {
     try {
       const favoriteRecipe = await FavoriteRecipes.findById(req.params.id); // Get the recipe by ID
@@ -56,6 +59,7 @@ router
       res.status(500).json({ message: "Server error", error }); // Send error response
     }
   })
+  // Update by id a recipe in favorites
   .put(async (req, res) => {
     try {
       const updateFavorite = await FavoriteRecipes.findByIdAndUpdate(
@@ -79,6 +83,7 @@ router
       res.status(500).json({ message: "Server error", error });
     }
   })
+  // Delete by id a recipe in favorites
   .delete(async (req, res) => {
     try {
       // Find and delete by id
