@@ -1,6 +1,8 @@
 // Import modules
 import express from "express"; // express for routing
 import FavoriteRecipes from "../models/FavoriteRecipes.mjs"; // import FavoriteRecipes model
+import { viewRecipeById } from "../controllers/viewRecipeById.mjs"; // Import viewRecipeById function
+
 const router = express.Router(); // create router
 
 router
@@ -48,17 +50,7 @@ router
 router
   .route("/:id")
   // Get by id a recipe in favorites
-  .get(async (req, res) => {
-    try {
-      const favoriteRecipe = await FavoriteRecipes.findById(req.params.id); // Get the recipe by ID
-      if (!favoriteRecipe) {
-        return res.status(404).json({ message: "Favorite recipe not found" });
-      }
-      res.status(200).json(favoriteRecipe); // Return the recipe in json format
-    } catch (error) {
-      res.status(500).json({ message: "Server error", error }); // Send error response
-    }
-  })
+  .get(viewRecipeById) // The viewRecipeById function simplifies the get by id request
   // Update by id a recipe in favorites
   .put(async (req, res) => {
     try {
