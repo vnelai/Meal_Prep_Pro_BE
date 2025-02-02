@@ -1,7 +1,7 @@
 // Import modules
 import express from "express"; // express for routing
 import FavoriteRecipes from "../models/FavoriteRecipes.mjs"; // import FavoriteRecipes model
-import { viewRecipeById } from "../controllers/viewRecipeById.mjs"; // Import viewRecipeById function
+import viewRecipeById from "../controllers/viewRecipeById.mjs"; // Import viewRecipeById function
 
 const router = express.Router(); // create router
 

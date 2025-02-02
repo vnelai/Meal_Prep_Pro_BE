@@ -20,5 +20,5 @@ const viewRecipeById = async (req, res) => {
     }
   };
 
-  // Export function
-export default viewRecipeById;
+// Export function
+export default viewRecipeById; 
