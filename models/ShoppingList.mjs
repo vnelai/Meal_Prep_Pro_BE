@@ -7,19 +7,6 @@ const shoppingListSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    quantity: {
-        type: Number,
-        required: true,
-        min: 1
-    },
-    unit: {
-        type: String,
-        required: false
-    },
-    purchased: {
-        type: Boolean,
-        default: false
-    }
 });
 
 // Set meal plan model in variable

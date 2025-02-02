@@ -22,15 +22,12 @@ router
   .post(async (req, res) => {
     try {
       // Use destructuring to automatically extract all the properties from req.body and assign them to variables in a single line
-      const { itemName, quantity, unit, purchased } =
+      const { itemName } =
         req.body;
 
       // This variable will be the new document we will save in the database
       const newShoppingListItem = new ShoppingList({
         itemName,
-        quantity,
-        unit,
-        purchased
       });
 
       // The save method saves the shopping list item into database
