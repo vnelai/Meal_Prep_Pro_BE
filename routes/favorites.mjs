@@ -24,16 +24,11 @@ router
   .post(async (req, res) => {
     try {
       // Use destructuring to automatically extract all the properties from req.body and assign them to variables in a single line
-      const { recipeId, recipeName, recipeImg, ingredients, instructions } =
-        req.body;
+      const { recipeName } = req.body;
 
       // This variable will be the new document we will save in the database
       const newFavorite = new FavoriteRecipes({
-        recipeId,
-        recipeName,
-        recipeImg,
-        ingredients,
-        instructions,
+        recipeName, // Only adding recipe name for post method
       });
 
       // The save method saved the newFavorite into database

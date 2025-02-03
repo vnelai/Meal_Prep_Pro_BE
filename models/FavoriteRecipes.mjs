@@ -3,25 +3,21 @@ import mongoose from "mongoose"; //mongoose for database interactions
 
 // Create favoriteRecipesSchema
 const favoriteRecipesSchema = new mongoose.Schema({
-    recipeId: {
-        type: String,
-        required: true,
-    },
     recipeName: {
         type: String,
         required: true,
     },
     recipeImg: {
         // since mongoose doesn't have 
-        // //data type image, we will use string url
+        // data type image, we will use string url
         type: String, 
-        required: true,
+        required: false,
     },
     ingredients: [
         {
             name: {
                 type: String,
-                required: true,
+                required: false,
             },
             quantity: {
                 type: String,
@@ -35,7 +31,7 @@ const favoriteRecipesSchema = new mongoose.Schema({
     ],
     instructions: {
         type: String, 
-        required: true,
+        required: false,
     },
 });
 
