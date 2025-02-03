@@ -5,14 +5,14 @@ const fetchRecipesFromExternalApi = async (req, res) => {
 
     try {
       // Fetch data from external API
-      const apiRes = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${query}`);
+      const res = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${query}`);
       const data = await apiRes.json();  // Convert response data to json format
   
-      // If response is successful, send the data back
-      if (apiRes.ok) {
-        res.status(200).json(data);
+      // If response is successful, send the data back in array results
+      if (res.ok) {
+        res.status(200).json(data.results);
       } else {
-        res.status(apiRes.status).json({ message: "Error fetching recipes from external API" });
+        res.status(res.status).json({ message: "Error fetching recipes from external API" });
       }
     } catch (error) {
       res.status(500).json({ message: "Server error", error });
