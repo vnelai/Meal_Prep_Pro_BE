@@ -15,6 +15,12 @@ router
       if (!favoriteRecipes || favoriteRecipes.length === 0) {
         return res.status(404).json({ message: "No favorite recipe found" });
       }
+
+      // Map the favorite recipes to only include the name
+      const mappedFavorites = favoriteRecipes.map((recipe) => ({
+        name: recipe.recipeName, // Extract the name
+      }));
+
       res.status(200).json(favoriteRecipes); // Convert response to json format
     } catch (error) {
       res.status(500).json({ message: "Server error", error }); // Send error response
@@ -24,11 +30,11 @@ router
   .post(async (req, res) => {
     try {
       // Use destructuring to automatically extract all the properties from req.body and assign them to variables in a single line
-      const { recipeName } = req.body;
+      const meals = req.body;
 
       // This variable will be the new document we will save in the database
       const newFavorite = new FavoriteRecipes({
-        recipeName, // Only adding recipe name for post method
+        meals, // Only adding recipe name for post method
       });
 
       // The save method saved the newFavorite into database

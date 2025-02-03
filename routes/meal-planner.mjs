@@ -21,16 +21,22 @@ router
   // Create a new recipe into meal-planner
   .post(async (req, res) => {
     try {
-      // Use destructuring to automatically extract all the properties from req.body and assign them to variables in a single line
-      const { mealDay, recipeId, recipeName } =
-        req.body;
+      // Assign the request body to the weekMealPlan variable.
+      const weekMealPlan = req.body;
 
+      // Check if a meal plan already exists
+      let existingMealPlan = await MealPlanner.findOne();
+
+      // If a meal plan exists, update it instead of creating a new one
+      if (existingMealPlan) {
+        existingMealPlan.weekMealPlan = weekMealPlan;
+        const updatedMealPlan = await existingMealPlan.save();
+        return res.status(200).json(updatedMealPlan);
+      }
+      
+      // If no meal plan exists, create a new one
       // This variable will be the new document we will save in the database
-      const newMealPlan = new MealPlanner({
-        mealDay,
-        recipeId,
-        recipeName,
-      });
+      const newMealPlan = new MealPlanner({ weekMealPlan });
 
       // The save method saves the newMealPlan into database
       const savedMealPlanRecipe = await newMealPlan.save();
