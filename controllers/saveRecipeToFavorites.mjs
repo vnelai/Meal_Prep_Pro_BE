@@ -9,7 +9,7 @@ const saveRecipeToFavorites = async (req, res) => {
     try {
       // Create new recipe from request body
       const favoriteRecipe = new FavoriteRecipes({
-        recipeId,  
+        // recipeId,  
         recipeName: title,  // Renaming the 'title' key from the request body from external API to 'recipeName', to match the FavoriteRecipes schema. 
         recipeImg: image,  // Renaming the 'image' key from the request body from external API to 'recipeImg', to match the FavoriteRecipes schema. 
         instructions,

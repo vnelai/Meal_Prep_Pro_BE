@@ -15,12 +15,6 @@ router
       if (!favoriteRecipes || favoriteRecipes.length === 0) {
         return res.status(404).json({ message: "No favorite recipe found" });
       }
-
-      // Map the favorite recipes to only include the name
-      const mappedFavorites = favoriteRecipes.map((recipe) => ({
-        name: recipe.recipeName, // Extract the name
-      }));
-
       res.status(200).json(favoriteRecipes); // Convert response to json format
     } catch (error) {
       res.status(500).json({ message: "Server error", error }); // Send error response
@@ -29,12 +23,12 @@ router
   // Create a new recipe into favorites
   .post(async (req, res) => {
     try {
-      // Use destructuring to automatically extract all the properties from req.body and assign them to variables in a single line
-      const meals = req.body;
+      // Use destructuring to automatically extract all the properties from req.body and assign them to variables
+      const { recipeName } = req.body;
 
       // This variable will be the new document we will save in the database
       const newFavorite = new FavoriteRecipes({
-        meals, // Only adding recipe name for post method
+        recipeName, // Only adding recipe name for post method
       });
 
       // The save method saved the newFavorite into database
@@ -45,8 +39,33 @@ router
     } catch (error) {
       // If any errors occur send the error message
       res.status(500).json({ message: "Server error", error });
+     } 
+  // });
+  // .post(async (req, res) => {
+  //   console.log(req.body);  // Log the incoming data
+    
+  //   const { recipeName, recipeImg, instructions, ingredients } = req.body;
+
+  //   // Create a new favorite recipe with the required fields
+  //   const newFavorite = new FavoriteRecipes({
+  //       recipeName,
+  //       recipeImg,
+  //       instructions,
+  //       ingredients: ingredients.map(ingredient => ({
+  //           name: ingredient.name,
+  //           quantity: ingredient.quantity,
+  //           unit: ingredient.unit,
+  //       })),
+  //   });
+
+    try {
+        await newFavorite.save();
+        res.status(201).json({ message: 'Recipe added to favorites!' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error', error });
     }
-  });
+});
 
 router
   .route("/:id")
