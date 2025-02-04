@@ -1,6 +1,5 @@
 // Import modules
 import express from "express"; // express for routing
-import Recipes from "../models/Recipes.mjs" // import Recipes model
 //import controller functions
 import viewRecipeById from "../controllers/viewRecipeById.mjs";
 import saveRecipeToFavorites from "../controllers/saveRecipeToFavorites.mjs";
@@ -9,7 +8,7 @@ import fetchRecipesFromExternalApi from "../controllers/fetchRecipesFromExternal
 const router = express.Router(); // create router
 
 // Get all recipes from external API
-router.get("/", fetchRecipesFromExternalApi);
+router.get("/search", fetchRecipesFromExternalApi);
 
 // View a single recipe by ID
 router.get("/:id", viewRecipeById);
