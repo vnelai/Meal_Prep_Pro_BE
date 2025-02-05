@@ -9,7 +9,6 @@ router
   .get(async (req, res) => {
     try {
       const MealPLannerRecipes = await MealPlanner.find(); // Get all meal planner recipes
-      console.log(MealPLannerRecipes); // Log the recipes to verify data
       if (!MealPLannerRecipes || MealPLannerRecipes.length === 0) {
         return res.status(404).json({ message: "No meal plan recipe found" });
       }

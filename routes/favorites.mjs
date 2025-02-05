@@ -11,7 +11,6 @@ router
   .get(async (req, res) => {
     try {
       const favoriteRecipes = await FavoriteRecipes.find(); // Get all favorite recipes
-      console.log(favoriteRecipes); // Log the recipes to verify data
       if (!favoriteRecipes || favoriteRecipes.length === 0) {
         return res.status(404).json({ message: "No favorite recipe found" });
       }
@@ -40,31 +39,6 @@ router
       // If any errors occur send the error message
       res.status(500).json({ message: "Server error", error });
      } 
-  // });
-  // .post(async (req, res) => {
-  //   console.log(req.body);  // Log the incoming data
-    
-  //   const { recipeName, recipeImg, instructions, ingredients } = req.body;
-
-  //   // Create a new favorite recipe with the required fields
-  //   const newFavorite = new FavoriteRecipes({
-  //       recipeName,
-  //       recipeImg,
-  //       instructions,
-  //       ingredients: ingredients.map(ingredient => ({
-  //           name: ingredient.name,
-  //           quantity: ingredient.quantity,
-  //           unit: ingredient.unit,
-  //       })),
-  //   });
-
-    try {
-        await newFavorite.save();
-        res.status(201).json({ message: 'Recipe added to favorites!' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Server error', error });
-    }
 });
 
 router

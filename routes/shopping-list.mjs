@@ -9,7 +9,6 @@ router
   .get(async (req, res) => {
     try {
       const shoppingListItems = await ShoppingList.find(); // Get all shopping list
-      console.log(shoppingListItems); // Log shopping list to verify data
       if (!shoppingListItems || shoppingListItems.length === 0) {
         return res.status(404).json({ message: "No shopping list item found" });
       }
