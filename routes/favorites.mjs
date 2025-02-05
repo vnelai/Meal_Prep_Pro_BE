@@ -22,24 +22,30 @@ router
   // Create a new recipe into favorites
   .post(async (req, res) => {
     try {
-      // Use destructuring to automatically extract all the properties from req.body and assign them to variables
-      const { recipeName } = req.body;
+      // Destructure all fields from the request body
+      const { recipeName, recipeImg, instructions, ingredients } = req.body;
 
-      // This variable will be the new document we will save in the database
+      // Setting image, instructions, and ingredients as optional 
+      // So it doesn't interfere with the add favorite recipe by name on favorites list
       const newFavorite = new FavoriteRecipes({
-        recipeName, // Only adding recipe name for post method
+        recipeName, 
+        recipeImg: recipeImg || "",  
+        instructions: instructions || "",  
+        ingredients: ingredients || []  
       });
 
-      // The save method saved the newFavorite into database
+      // Saving new favorite recipe to the database
       const savedFavorite = await newFavorite.save();
-
       // The savedFavorite is then returned in json format
-      res.status(201).json(savedFavorite);
+      res.status(201).json(savedFavorite); 
     } catch (error) {
-      // If any errors occur send the error message
       res.status(500).json({ message: "Server error", error });
-     } 
+    }
 });
+
+
+
+
 
 router
   .route("/:id")
